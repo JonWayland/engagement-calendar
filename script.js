@@ -13,9 +13,14 @@ document.addEventListener('DOMContentLoaded', function() {
         daysOfWeekContainer.appendChild(dayLabel);
     });
 
-    let currentDate = new Date(2024, 3); // Set for April 2024
+    let currentDate = new Date(2024, 3); // April 2024
 
     const events = [
+        {"Date": "2024-04-01", "Event Title": "Client Call", "Detailed Description": "Call with client to review project details."},
+        {"Date": "2024-04-01", "Event Title": "Birthday Party", "Detailed Description": "Buy the birthday cake and get the party supplies."},
+        {"Date": "2024-04-01", "Event Title": "April Fool's Day", "Detailed Description": "Make sure to play a prank on someone."},
+        {"Date": "2024-04-01", "Event Title": "Exciting Survey", "Detailed Description": "Deadline to complete the most exciting survey."},
+        {"Date": "2024-04-01", "Event Title": "Big Project is Due Today", "Detailed Description": "That big project you were working on is due today."},
         {"Date": "2024-04-01", "Event Title": "Team Meeting", "Detailed Description": "Monthly team meeting to discuss project updates."},
         {"Date": "2024-04-15", "Event Title": "Workshop", "Detailed Description": "A workshop on effective communication."},
         // More events can be added here
@@ -37,32 +42,26 @@ document.addEventListener('DOMContentLoaded', function() {
         }
 
         for (let day = 1; day <= daysInMonth; day++) {
-          const dayElement = document.createElement('div');
-          dayElement.className = 'calendar-day';
-          const date = new Date(year, month, day);
-          const dateString = date.toISOString().split('T')[0]; // Format as "YYYY-MM-DD"
-          const event = events.find(e => e.Date === dateString);
-          const dayOfWeekAbbrev = daysOfWeek[date.getDay()].toLowerCase();
-      
-          dayElement.innerHTML = `<span class="day-number">${day}</span> <span class="day-abbrev">${dayOfWeekAbbrev}</span>`;
-          
-          if (event) {
-              const eventElement = document.createElement('div');
-              eventElement.className = 'event';
-              eventElement.textContent = event['Event Title'];
-              eventElement.onclick = function() {
-                  alert(event['Detailed Description']); // Using alert for demonstration, consider a modal for better UX
-              };
-              dayElement.appendChild(eventElement);
-          }
-      
-          calendar.appendChild(dayElement);
-      }
+            const dayElement = document.createElement('div');
+            dayElement.className = 'calendar-day';
+            const date = new Date(year, month, day).toISOString().split('T')[0];
+            const dayEvents = events.filter(e => e.Date === date).slice(0, 5); // Get up to 5 events for this date
+
+            dayElement.innerHTML = `<span class="day-number">${day}</span> <span class="day-abbrev">${daysOfWeek[new Date(year, month, day).getDay()].toLowerCase()}</span>`;
+
+            dayEvents.forEach(event => {
+                const eventElement = document.createElement('div');
+                eventElement.className = 'event';
+                eventElement.textContent = event['Event Title'];
+                eventElement.onclick = function() {
+                    alert(event['Detailed Description']); // Using alert for demonstration, consider a modal for better UX
+                };
+                dayElement.appendChild(eventElement);
+            });
+
+            calendar.appendChild(dayElement);
+        }
     }
 
     generateCalendar(currentDate);
-
-    window.showEventDetails = function(description) {
-        alert(description);
-    };
 });
