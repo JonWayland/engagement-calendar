@@ -1,0 +1,61 @@
+@import url('https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&display=swap'); /* Example fallback for Aptos */
+.calendar-container {
+    max-width: 100%; /* Set to 100% to use the full width of the page */
+    margin: 40px auto;
+    text-align: center;
+    font-family: 'Aptos', 'Roboto', sans-serif; /* Ensure your preferred font is applied */
+}
+
+.days-of-week {
+    display: grid;
+    grid-template-columns: repeat(7, 1fr); /* Ensures each header aligns directly above each day */
+    background-color: #f0f0f0;
+    padding: 10px 0;
+    text-align: center;
+    font-weight: bold;
+    border-bottom: 1px solid #ddd; /* Adds a separating line between headers and days */
+}
+
+.days-of-week div {
+    padding: 10px;
+    color: #333; /* Ensuring the headers are clearly visible but distinct from the day blocks */
+}
+
+.days-grid {
+    display: grid;
+    grid-template-columns: repeat(7, 1fr);
+    gap: 5px;
+    padding: 10px;
+}
+
+.calendar-day {
+    padding: 15px;
+    border: 1px solid #ddd;
+    min-height: 100px;
+    text-align: center;
+}
+
+.calendar-title {
+    font-size: 28px;
+    font-weight: bold;
+    margin: 20px 0;
+    text-align: center;
+}
+
+.day-number {
+    font-weight: bold;
+    font-size: 16px;
+}
+
+.day-abbrev {
+    color: #808080;
+    font-size: 12px;
+    margin-left: 5px;
+}
+
+.event {
+    color: green;             /* Sets the text color to blue */
+    cursor: pointer;         /* Changes the cursor to indicate it's clickable */
+    font-size: 12px;         /* Smaller font size */
+    text-decoration: underline; /* Underline to indicate it's a link or clickable */
+}
