@@ -1,19 +1,13 @@
 document.addEventListener('DOMContentLoaded', function() {
     const calendar = document.getElementById('calendar');
-    const titleElement = document.getElementById('calendar-title');
+    const monthYearElement = document.getElementById('month-year'); // Element to update dynamically
+    const btnPrevMonth = document.getElementById('prevMonth');
+    const btnNextMonth = document.getElementById('nextMonth');
     const daysOfWeekContainer = document.getElementById('days-of-week');
     const daysOfWeek = ['Sun', 'Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat'];
     const daysOfWeekFull = ['Sunday', 'Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday'];
     const monthNames = ["January", "February", "March", "April", "May", "June",
         "July", "August", "September", "October", "November", "December"];
-
-    daysOfWeekFull.forEach(day => {
-        const dayLabel = document.createElement('div');
-        dayLabel.textContent = day;
-        daysOfWeekContainer.appendChild(dayLabel);
-    });
-
-    let currentDate = new Date(2024, 3); // April 2024
 
     const events = [
         {"Date": "2024-04-01", "Event Title": "Client Call", "Detailed Description": "Call with client to review project details."},
@@ -26,6 +20,14 @@ document.addEventListener('DOMContentLoaded', function() {
         // More events can be added here
     ];
 
+    daysOfWeekFull.forEach(day => {
+        const dayLabel = document.createElement('div');
+        dayLabel.textContent = day;
+        daysOfWeekContainer.appendChild(dayLabel);
+    });
+
+    let currentDate = new Date(2024, 3); // April 2024 initially
+
     function generateCalendar(d) {
         calendar.innerHTML = '';
         const month = d.getMonth();
@@ -33,7 +35,7 @@ document.addEventListener('DOMContentLoaded', function() {
         const daysInMonth = new Date(year, month + 1, 0).getDate();
         const firstDay = new Date(year, month, 1).getDay();
 
-        titleElement.textContent = `Engagement Calendar for ${monthNames[month]}, ${year}`;
+        monthYearElement.textContent = `${monthNames[month]}, ${year}`; // Update month and year
 
         for (let i = 0; i < firstDay; i++) {
             const emptyCell = document.createElement('div');
@@ -62,6 +64,17 @@ document.addEventListener('DOMContentLoaded', function() {
             calendar.appendChild(dayElement);
         }
     }
+
+    // Event listeners for navigation buttons
+    btnPrevMonth.addEventListener('click', function() {
+        currentDate.setMonth(currentDate.getMonth() - 1);
+        generateCalendar(currentDate);
+    });
+
+    btnNextMonth.addEventListener('click', function() {
+        currentDate.setMonth(currentDate.getMonth() + 1);
+        generateCalendar(currentDate);
+    });
 
     generateCalendar(currentDate);
 });
