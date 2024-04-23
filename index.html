@@ -12,8 +12,15 @@
           <h1>Engagement Calendar</h1>
           <h2 id="month-year">April 2024</h2> <!-- This will be dynamically updated -->
         </div>
-        <button id="prevMonth">Previous</button>
-        <button id="nextMonth">Next</button>
+        
+        <div class="button-group">
+            <button id="currentMonth">Current Month</button>
+        </div>
+        <div class="button-group center-buttons">
+            <button id="prevMonth">Previous</button>
+            <button id="nextMonth">Next</button>
+        </div>
+        
         <div id="days-of-week" class="days-of-week"></div>
         <div id="calendar" class="days-grid"></div>
     </div>
@@ -23,16 +30,11 @@
         <!-- Modal content -->
         <div class="modal-content">
             <span class="close">&times;</span>
-            <h2>Detailed Event Description:</h2>
+            <h2>Event Details</h2> <!-- Updated heading to reflect "Event Details" -->
             <p id="modal-description"></p>
         </div>
     </div>
 
-
-    <script src="script.js">
-      
-    </script>
+    <script src="script.js"></script>
 </body>
 </html>
-
-

@@ -1,24 +1,84 @@
-@import url('https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&display=swap'); /* Example fallback for Aptos */
+@import url('https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&display=swap');
+
 .calendar-container {
-    max-width: 100%; /* Set to 100% to use the full width of the page */
+    max-width: 100%;
     margin: 40px auto;
     text-align: center;
-    font-family: 'Aptos', 'Roboto', sans-serif; /* Ensure your preferred font is applied */
+    font-family: 'Aptos', 'Roboto', sans-serif;
 }
+
+.buttons-container {
+    display: flex;
+    justify-content: center; /* Aligns buttons centrally */
+    align-items: center; /* Ensures vertical alignment is consistent */
+}
+
+#currentMonth {
+    margin-right: auto; /* Pushes the Current Month button to the left */
+    margin-left: 10px; /* Adds space on the left */
+    background-color: white; /* Background color set to white */
+    color: #003366; /* Dark navy blue color */
+    border-color: #003366; /* Dark navy blue border */
+    font-size: 12px; /* Even smaller font size for less prominence */
+    padding: 5px 10px; /* Reduced padding for a smaller button size */
+    border-radius: 5px; /* Keeps the rounded corners */
+    cursor: pointer;
+    transition: background-color 0.3s, color 0.3s;
+}
+
+#currentMonth:hover {
+    background-color: #003366; /* Dark navy blue background on hover */
+    color: white; /* White text on hover */
+}
+
+.center-buttons {
+    justify-content: center; /* Keeps Previous and Next buttons centered */
+    margin-top: 10px;
+    margin-left: 20px; /* Adds some space to the left to avoid touching the Current Month button */
+}
+
+#prevMonth, #nextMonth {
+    color: #30d5c8; /* Turquoise color */
+    border-color: #30d5c8;
+}
+
+button {
+    background-color: white;  /* Background of the buttons */
+    color: #30d5c8;           /* Turquoise color for the text */
+    font-size: 16px;          /* Larger font size */
+    padding: 10px 20px;       /* Padding around the text */
+    border: 2px solid #30d5c8; /* Turquoise border */
+    border-radius: 5px;       /* Rounded corners for modern look */
+    cursor: pointer;          /* Cursor changes to pointer to indicate it's clickable */
+    transition: background-color 0.3s, color 0.3s; /* Smooth transition for hover effects */
+}
+
+button:hover {
+    background-color: #30d5c8; /* Turquoise background on hover */
+    color: white;              /* White text on hover */
+}
+
+
+
+#prevMonth:hover, #nextMonth:hover {
+    background-color: #30d5c8; /* Turquoise background on hover */
+    color: white;              /* White text on hover */
+}
+
 
 .days-of-week {
     display: grid;
-    grid-template-columns: repeat(7, 1fr); /* Ensures each header aligns directly above each day */
+    grid-template-columns: repeat(7, 1fr);
     background-color: #f0f0f0;
     padding: 10px 0;
     text-align: center;
     font-weight: bold;
-    border-bottom: 1px solid #ddd; /* Adds a separating line between headers and days */
+    border-bottom: 1px solid #ddd;
 }
 
 .days-of-week div {
     padding: 10px;
-    color: #333; /* Ensuring the headers are clearly visible but distinct from the day blocks */
+    color: #333;
 }
 
 .days-grid {
@@ -38,11 +98,20 @@
 .calendar-title {
     font-size: 28px;
     font-weight: bold;
-    margin: 20px 0;
+    margin: 10px 0 0 0; /* Reduced top margin and removed bottom margin */
     text-align: center;
 }
 
-.day-number {
+.calendar-title h1 {
+    margin-bottom: 0; /* Remove bottom margin from h1 */
+}
+
+.calendar-title h2 {
+    margin-top: 5px; /* Small top margin for h2 to bring it closer to h1 */
+}
+
+
+.day-number, .day-abbrev {
     font-weight: bold;
     font-size: 16px;
 }
@@ -54,36 +123,33 @@
 }
 
 .event {
-    color: green;             /* Sets the text color to blue */
-    cursor: pointer;         /* Changes the cursor to indicate it's clickable */
-    font-size: 12px;         /* Smaller font size */
-    text-decoration: underline; /* Underline to indicate it's a link or clickable */
+    color: green;
+    cursor: pointer;
+    font-size: 12px;
+    text-decoration: underline;
 }
 
-/* The Modal (background) */
 .modal {
     display: none; /* Hidden by default */
-    position: fixed; /* Stay in place */
-    z-index: 1; /* Sit on top */
+    position: fixed;
+    z-index: 1;
     left: 0;
     top: 0;
-    width: 100%; /* Full width */
-    height: 100%; /* Full height */
+    width: 100%;
+    height: 100%;
     overflow: auto; /* Enable scroll if needed */
     background-color: rgb(0,0,0); /* Fallback color */
     background-color: rgba(0,0,0,0.4); /* Black w/ opacity */
 }
 
-/* Modal Content */
 .modal-content {
     background-color: #fefefe;
     margin: 15% auto; /* 15% from the top and centered */
     padding: 20px;
     border: 1px solid #888;
-    width: 80%; /* Could be more or less, depending on screen size */
+    width: 50%; /* Adjust as necessary */
 }
 
-/* The Close Button */
 .close {
     color: #aaa;
     float: right;
@@ -98,19 +164,7 @@
     cursor: pointer;
 }
 
-button {
-    background-color: white;  /* Background of the buttons */
-    color: #30d5c8;           /* Turquoise color for the text */
-    font-size: 16px;          /* Larger font size */
-    padding: 10px 20px;       /* Padding around the text */
-    border: 2px solid #30d5c8; /* Turquoise border */
-    border-radius: 5px;       /* Rounded corners for modern look */
-    cursor: pointer;          /* Cursor changes to pointer to indicate it's clickable */
-    transition: background-color 0.3s, color 0.3s; /* Smooth transition for hover effects */
-}
-
-button:hover {
-    background-color: #30d5c8; /* Turquoise background on hover */
-    color: white;              /* White text on hover */
+.today-highlight {
+    background-color: #D5FFFF; /* Very light blue for today's date */
 }
 
